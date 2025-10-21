@@ -33,8 +33,40 @@ public class Room {
         return dirty;
     }
 
-    // Derived getter (no backing variable)
+    // Derived getter
+
     public boolean isAvailable() {
         return !occupied && !dirty;
+    }
+
+    // exercise 2
+
+    public void checkIn() {
+        if (isAvailable()) {
+            occupied = true;
+            dirty = true; // Room becomes dirty once occupied
+            System.out.println("Guest checked in successfully.");
+        } else {
+            System.out.println("Cannot check in: Room is either occupied or dirty.");
+        }
+    }
+
+    public void checkOut() {
+        if (occupied) {
+            occupied = false;
+            dirty = true; // Still dirty until cleaned
+            System.out.println("Guest checked out. Room is now dirty.");
+        } else {
+            System.out.println("Cannot check out: Room is already vacant.");
+        }
+    }
+
+    public void cleanRoom() {
+        if (dirty) {
+            dirty = false;
+            System.out.println("Room has been cleaned and is now available.");
+        } else {
+            System.out.println("Room is already clean.");
+        }
     }
 }
